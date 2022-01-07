@@ -1,0 +1,40 @@
+﻿@model Inventory
+
+@{
+    ViewBag.Title = Model != null ? "Edit" : "Create";
+}
+
+<h2>@ViewBag.Title Product</h2>
+
+
+<form asp-action=@ViewBag.Title>
+
+    <div asp-validation-summary=All></div>
+    <label asp-for="Id" class="control-label"></label>
+    <input asp-for="Id" class="form-control"/>
+
+    <label asp-for="InventoryName" class="control-label"></label>
+    <input asp-for="InventoryName" class="form-control"/>
+
+    <label asp-for="Description" class="control-label"></label>
+    <input asp-for="Description" class="form-control"/>
+
+    <label asp-for="DecadeMade" class="control-label"></label>
+    <input asp-for="DecadeMade" class="form-control"/>
+
+    <label asp-for="Cost" class="control-label"></label>
+    <input asp-for="Cost" class="form-control"/>
+
+    <label asp-for="Price" class="control-label"></label>
+    <input asp-for="Price" class="form-control"/>
+
+    <label asp-for="Category.CategoryName" class="control-label"></label>
+    <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories,"Id","CategoryName"))" class="form-control">
+        <option value"">Select Category</option>
+    </select>
+    
+    <input type="submit" value="Save" class="btn btn-primary" />
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    
+
+</form>
