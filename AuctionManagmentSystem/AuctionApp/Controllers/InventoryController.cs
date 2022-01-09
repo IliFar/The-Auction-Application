@@ -1,10 +1,15 @@
 ﻿using AuctionApp.Models;
 using AuctionApp.Models.Repositories;
+using AuctionApp.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AuctionApp.Controllers
 {
+    
     public class InventoryController : Controller
     {
         private readonly IInventoryRepository inventoryRepository;
@@ -34,14 +39,22 @@ namespace AuctionApp.Controllers
             ModelState.Remove("Category");
             if (ModelState.IsValid)
             {
-                inventoryRepository.Add(inventory);
-                return RedirectToAction("Index");
+                if (inventory.Sold)
+                {
+                    inventoryRepository.Add(inventory);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    inventoryRepository.Add(inventory);
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.Categories = categoryRepository.GetAll();
             return View();
         }
-        public IActionResult Edit(int id)
+        public IActionResult Edit(string id)
         {
             ViewBag.Categories = categoryRepository.GetAll();
             Inventory inventory = inventoryRepository.GetInventoryById(id);
@@ -55,18 +68,27 @@ namespace AuctionApp.Controllers
 
             if (ModelState.IsValid)
             {
-                inventoryRepository.Update(inventory);
-                return RedirectToAction("Index");
+                if(inventory.Sold)
+                {
+                    inventoryRepository.Update(inventory);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    inventoryRepository.Update(inventory);
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.Categories = categoryRepository.GetAll();
             return View("Create", inventory);
         }
 
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
             inventoryRepository.Delete(id);
             return RedirectToAction("Index");
         }
+
     }
 }

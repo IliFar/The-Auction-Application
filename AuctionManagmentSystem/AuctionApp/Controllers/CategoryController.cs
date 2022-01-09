@@ -1,10 +1,12 @@
 ﻿using AuctionApp.Models;
 using AuctionApp.Models.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace AuctionApp.Controllers
 {
+    
     public class CategoryController : Controller
     {
         private readonly ICategoryRepository categoryRepository;
@@ -56,7 +58,7 @@ namespace AuctionApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Categories = categoryRepository.GetAll();
+            //ViewBag.Categories = categoryRepository.GetAll();
             return View("Create", category);
         }
 

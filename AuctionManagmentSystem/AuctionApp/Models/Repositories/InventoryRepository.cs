@@ -21,7 +21,7 @@ namespace AuctionApp.Models.Repositories
             appDbContext.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(string id)
         {
             var delete = GetInventoryById(id);
             if (delete != null)
@@ -36,7 +36,7 @@ namespace AuctionApp.Models.Repositories
             return appDbContext.Inventories.Include(c => c.Category).ToList();
         }
 
-        public Inventory GetInventoryById(int id)
+        public Inventory GetInventoryById(string id)
         {
             return appDbContext.Inventories.FirstOrDefault(p => p.Id == id);
         }

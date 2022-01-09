@@ -6,9 +6,9 @@ namespace AuctionApp.Models.Repositories
     public interface IInventoryRepository
     {
         IEnumerable<Inventory> GetAll();
-        Inventory GetInventoryById(int id);
+        Inventory GetInventoryById(string id);
         void Add(Inventory inventory);
         void Update (Inventory inventory);
-        void Delete(int id);
+        void Delete(string id);
     }
 }

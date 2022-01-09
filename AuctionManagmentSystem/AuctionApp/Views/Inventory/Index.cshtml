@@ -7,7 +7,12 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            
+            <th>
+                @Html.DisplayNameFor( model => model.Sold)
+            </th>
+            <th>
+                @Html.DisplayNameFor( model => model.FinalPrice)
+            </th>
             <th>
                 @Html.DisplayNameFor( model => model.Image)
             </th>
@@ -41,6 +46,13 @@
         @foreach (var inventory in Model)
        {
            <tr>
+                <td>
+                    @Html.CheckBoxFor(model => inventory.Sold)
+                </td>
+               <td>
+                   @Html.DisplayFor(model => inventory.FinalPrice)
+               </td>
+               
                <td>
                     @Html.DisplayFor( model => inventory.Image)
                </td>
