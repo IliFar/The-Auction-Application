@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+    <h1 class="display-4 text-center">Welcome To The Auction App</h1>
+    <ol class="list-group list-group-numbered">
+        <li class="list-group-item">
+            Login or register
+        </li>
+        <li class="list-group-item">
+            <a asp-action="Index" asp-controller="Inventory">To See All The Products</a>
+        </li>
+        <li class="list-group-item">
+            <a asp-action="Index" asp-controller="Category">To See All The Categories</a>
+        </li>
+        <li class="list-group-item">
+            <a asp-action="Create" asp-controller="Inventory">To Add A New Product</a>
+        </li>
+        <li class="list-group-item">
+            <a asp-action="Create" asp-controller="Category">To Add A New Category</a>
+        </li>
+    </ol>
+</div>
